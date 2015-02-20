@@ -426,6 +426,9 @@ function run_pdflatex() {
     AUXILIARYEXTS_GLOSSARIES="$AUXILIARYEXTS_GLOSSARIES log"
     echo -e "\t\t\t\t${txtgrn}[done]${txtrst}"
   fi
+  if [[ -e "$FILENAME-frn.tex" ]] ; then
+    $LATEX_PROGRAM "$FILENAME-frn.tex" &> /dev/null
+  fi
 }
 
 # Sets (La)TeX beamer preamble for handouts
