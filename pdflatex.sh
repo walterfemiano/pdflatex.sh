@@ -249,8 +249,10 @@ function cleanup() {
   for EXTENSION in $EXTENSIONS ; do
     if [[ $EXTENSION == "-bibtex.log" ]] ; then
       rm -f "${1%.tex}-bibtex.log" >&- 2>&-
+    elif [[ $EXTENSION == "-frn.log" ]] ; then
+      rm -f "${1%.tex}-frn.log"  &> /dev/null
     else
-      rm -f "${1%.tex}.$EXTENSION" >&- 2>&-
+	  rm -f "${1%.tex}.$EXTENSION" >&- 2>&-
     fi
     echo -ne "."
   done
@@ -455,7 +457,7 @@ while [[ -n $1 ]] ; do
     +3)     THRICE="2" ; shift ;;
     +b)     MAKEBIBTEXARG="true" ; shift ;;
     -b)     MAKEONLYBIBTEXARG="true" ; shift ; break ;;
-    -c)     AUXILIARYEXTS="$AUXILIARYEXTS log dvi synctex.gz -bibtex.log bbl gls ind" ; \
+    -c)     AUXILIARYEXTS="$AUXILIARYEXTS log dvi synctex.gz -bibtex.log bbl gls ind -frn.log" ; \
             cleanup "$2"; exit 0 ;;
     +g)     MAKEGLOSSARIESARG="true" ; shift ;;
     -g)     MAKEONLYGLOSSARIESARG="true" ; shift ; break ;;
